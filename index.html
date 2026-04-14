@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 10 Classmates System</title>
+
+    <style>
+    body {
+        font-family: 'Gill Sans';
+        background: linear-gradient(to right, #0a1f44, #142f66);
+        padding: 20px;
+        margin: 0;
+    }
+
+    .container {
+        max-width: 750px;
+        margin: auto;
+        background: #ffffff;
+        padding: 75px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        text-align: center;
+        color: #0a1f44;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+        padding: 12px;
+        width: 48%;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-add {
+        background: #f4c430;
+        color: #0a1f44;
+    }
+
+    .btn-add:hover {
+        background: #e0b020;
+        transform: translateY(-2px);
+    }
+
+    .btn-show {
+        background: #0a1f44;
+        color: white;
+        float: right;
+    }
+
+    .btn-show:hover {
+        background: #142f66;
+        transform: translateY(-2px);
+    }
+
+    #output {
+        margin-top: 20px;
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: inset 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    p {
+        margin: 5px 0;
+        color: #333;
+    }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Grade 10 Classmates System</h2>
+    <center><p>You may add or view your classmates.</p></center>
+
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="section" placeholder="Section (Emerald / Topaz / Sapphire / Ruby)">
+    <input type="text" id="subject" placeholder="Favorite Subject">
+
+    <button class="btn-add" onclick="addClassmate()">Add Classmate</button>
+    <button class="btn-show" onclick="showList()">Show List</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+class Classmate {
+    constructor(name, section, favorite_subject) {
+        this.name = name;
+        this.section = section;
+        this.favorite_subject = favorite_subject;
+    }
+
+    introduce() {
+        return `Hi! I am ${this.name} from ${this.section}. My favorite subject is ${this.favorite_subject}.`;
+    }
+}
+
+let classmates = [
+    new Classmate("Andrea", "Emerald", "Math"),
+    new Classmate("Jean", "Topaz", "Science"),
+    new Classmate("John", "Sapphire", "English"),
+    new Classmate("Asher", "Ruby", "Math"),
+    new Classmate("Melody", "Emerald", "History")
+];
+
+function addClassmate() {
+    let name = document.getElementById("name").value;
+    let section = document.getElementById("section").value;
+    let subject = document.getElementById("subject").value;
+
+    if (name && section && subject) {
+        classmates.push(new Classmate(name, section, subject));
+        alert("Classmate added!");
+    }
+}
+
+function showList() {
+    let output = document.getElementById("output");
+    output.innerHTML = "<h3>📋 Classmate List</h3>";
+
+    classmates.forEach(c => {
+        output.innerHTML += `<p>${c.introduce()}</p>`;
+    });
+}
+</script>
+</body>
+</html>
+
